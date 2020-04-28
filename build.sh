@@ -4,7 +4,6 @@ function get_by_country() {
     COUNTRY=$1
     git submodule update --remote;
     cd covid-19/data;
-    git pull;
     grep "$COUNTRY" countries-aggregated.csv  > ../../tmp/$COUNTRY.csv
     cd ../../
     python covgraph.py $1

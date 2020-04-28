@@ -11,8 +11,13 @@ Data provided by this repo https://github.com/datasets/covid-19
 
 # Run
 
-./build.sh CountryName
+`pip install -r requirements.txt`
 
+`./build.sh CountryName`
+
+# Example
+
+![Example figure](example-figure.png)
 
 # Credits
 
