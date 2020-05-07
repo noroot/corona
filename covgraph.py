@@ -4,6 +4,7 @@ import csv
 import sys
 from cycler import cycler
 import datetime
+import pandas as pd
 
 data = []
 data_diff = []
@@ -19,6 +20,8 @@ recover_diff = 0
 deaths_p = 0
 deaths_diff = 0
 latest_date = ""
+diff_per_day = []
+total_per_day = []
 with open("./tmp/{0}.csv".format(sys.argv[1])) as csvfile:
     reader = csv.reader(csvfile)
     for row in reader:
@@ -42,17 +45,23 @@ with open("./tmp/{0}.csv".format(sys.argv[1])) as csvfile:
         data_total.append(total)
         data_diff.append(total_diff)
         data_new.append(total_new)
-
-        
         data.append(r)
-        
-print(data_total)
+
+        diff_per_day.append(total_diff)
+        total_per_day.append(total)
+
+x = total_per_day
+y = pd.Series(diff_per_day).ewm(span=7).mean()
+plt.subplot(2,1,1)
 plt.title("Country={0} T={1}, R={2}, D={3}, Date={4}"
           .format(sys.argv[1],
                   total_p,
                   recovered,
                   deaths,
                   datetime.datetime.strptime(latest_date, "%Y-%m-%d")))
+
+plt.plot(x,y)
+plt.subplot(2,1,2)
 plt.plot(data)
 plt.show()
     
