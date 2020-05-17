@@ -61,8 +61,10 @@ plt.title("Country={0} T={1}, R={2}, D={3}, Date={4}"
                   datetime.datetime.strptime(latest_date, "%Y-%m-%d")))
 
 plt.plot(x,y)
+plt.legend(["new cases per day average"])
 plt.subplot(2,1,2)
 plt.plot(data)
+plt.legend(["new", "recover", "deaths"])
 plt.show()
     
 
