@@ -11,6 +11,9 @@ Data provided by this repo https://github.com/datasets/covid-19
 
 # Run
 
+`git clone`
+`git submodule init`
+`git pull --recurse-submodules`
 `pip install -r requirements.txt`
 
 `./build.sh CountryName`
